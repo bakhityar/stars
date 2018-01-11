@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="icon" th:href="@{/favicon.png}" />
+
+    <link rel="stylesheet" th:href="@{/vendor/materialize/css/materialize.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{/app.css}" />
+
+    <title>giflib | Favorites</title>
+</head>
+<body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="container">
+                <a th:href="@{/}" class="brand-logo">gif<span>.</span>lib</a>
+                <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a th:href="@{/}">Explore</a></li>
+                    <li><a th:href="@{/categories}">Categories</a></li>
+                    <li class="active"><a th:href="@{/favorites}">Favorites</a></li>
+                </ul>
+                <ul id="mobile-nav" class="side-nav">
+                    <li><a th:href="@{/}">Explore</a></li>
+                    <li><a th:href="@{/categories}">Categories</a></li>
+                    <li class="active"><a th:href="@{/favorites}">Favorites</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="search-bar container">
+        <div class="row">
+            <div class="col s12">
+                <form th:action="@{/search}" method="get">
+                    <div class="input-field">
+                        <input name="q" type="search" placeholder="Search stars..." required="required" autocomplete="off"/>
+                        <i class="material-icons">search</i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="gifs container">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Longitude</th>
+                <th scope="col">Color</th>
+                <th scope="col">Discoverer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="star : ${stars}">
+                <td> <a class="linkin" tabindex="0" role="button" th:text="${star.name}" th:href="@{'/star/' + ${star.name}}">Mark</a></td>
+                <td> <a th:text="${star.xCoord}" th:href="@{'/star/' + ${star.name}}">Otto</a></td>
+                <td> <a th:text="${star.yCoord}" th:href="@{'/star/' + ${star.name}}">@mdo</a></td>
+                <td> <a th:text="${star.color}" th:href="@{'/star/' + ${star.name}}">@mdo</a></td>
+                <td> <a th:text="${star.discoverer}" th:href="@{'/star/' + ${star.name}}">@mdo</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+<script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
+<script th:src="@{/vendor/materialize/js/materialize.js}"></script>
+<script th:src="@{/app.js}"></script>
+</body>
+</html>

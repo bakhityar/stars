@@ -1,18 +1,30 @@
 package com.testgreetgo.stars.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Star {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
   private String name;
   private String xCoord;
   private String yCoord;
   private String color;
   private String discoverer;
 
-  public Star(String name, String xCoord, String yCoord, String color, String discoverer) {
-    this.name = name;
-    this.xCoord = xCoord;
-    this.yCoord = yCoord;
-    this.color = color;
-    this.discoverer = discoverer;
+  public Star() {
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getName() {

@@ -57,11 +57,11 @@
             </thead>
             <tbody>
             <tr th:each="star : ${stars}">
-                <td> <a class="linkin" tabindex="0" role="button" th:text="${star.name}" th:href="@{'/star/' + ${star.name}}">Mark</a></td>
-                <td> <a th:text="${star.xCoord}" th:href="@{'/star/' + ${star.name}}">Otto</a></td>
-                <td> <a th:text="${star.yCoord}" th:href="@{'/star/' + ${star.name}}">@mdo</a></td>
-                <td> <a th:text="${star.color}" th:href="@{'/star/' + ${star.name}}">@mdo</a></td>
-                <td> <a th:text="${star.discoverer}" th:href="@{'/star/' + ${star.name}}">@mdo</a></td>
+                <td> <a class="linkin" tabindex="0" role="button" th:text="${star.name}" th:href="@{'/star/' + ${star.id}}">Mark</a></td>
+                <td> <a th:text="${star.xCoord}" th:href="@{'/star/' + ${star.id}}">Otto</a></td>
+                <td> <a th:text="${star.yCoord}" th:href="@{'/star/' + ${star.id}}">@mdo</a></td>
+                <td> <a th:text="${star.color}" th:href="@{'/star/' + ${star.id}}">@mdo</a></td>
+                <td> <a th:text="${star.discoverer}" th:href="@{'/star/' + ${star.id}}">@mdo</a></td>
             </tr>
             </tbody>
         </table>

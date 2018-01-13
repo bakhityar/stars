@@ -11,7 +11,7 @@
     <link rel="stylesheet" th:href="@{/app.css}" />
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>-->
 
-    <title>giflib | Home</title>
+    <title>Stars | Home</title>
 </head>
 <body>
     <div class="navbar-fixed">
@@ -32,23 +32,23 @@
             </div>
         </nav>
     </div>
-    <!--<div class="search-bar container">-->
-        <!--<div class="row">-->
-            <!--<div class="col s12">-->
-                <!--<form th:action="@{/search}" method="get">-->
-                    <!--<div class="input-field">-->
-                        <!--<input name="q" type="search" placeholder="Search all gifs..." required="required" autocomplete="off"/>-->
-                        <!--<i class="material-icons">search</i>-->
-                    <!--</div>-->
-                <!--</form>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="search-bar container">
+        <div class="row">
+            <div class="col s12">
+                <form th:action="@{/search}" method="get">
+                    <div class="input-field">
+                        <input name="q" type="search" placeholder="Search all gifs..." required="required" autocomplete="off"/>
+                        <i class="material-icons">search</i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="gifs container">
         <form th:action="@{/}" method="post" th:object="${star}">
             <div class="row">
                 <div class="col s12">
-                    <h2>New Category123</h2>
+                    <h2>New Category</h2>
                 </div>
             </div>
             <div class="divider"></div>

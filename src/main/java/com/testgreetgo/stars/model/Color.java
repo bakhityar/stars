@@ -8,7 +8,7 @@ public enum Color {
   WHITEYELLOW("Желто-белый","#ffffcc"),
   YELLOW("Желтый","#ffff00"),
   ORANGE("Оранжевый","#ffa500"),
-  RED("Red","#FF0000");
+  RED("Красный","#FF0000");
 
   private final String name;
   private final String hexCode;

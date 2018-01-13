@@ -20,8 +20,13 @@ public class StarServiceImpl implements StarService {
   }
 
   @Override
+  public List<Star> searchByName(String q) {
+    return starDao.searchByName(q);
+  }
+
+  @Override
   public Star findById(Long id) {
-    return null;
+    return starDao.findById(id);
   }
 
   @Override
@@ -34,4 +39,5 @@ public class StarServiceImpl implements StarService {
   public void delete(Star star) {
     starDao.delete(star);
   }
+
 }

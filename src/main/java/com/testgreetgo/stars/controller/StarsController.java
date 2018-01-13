@@ -35,16 +35,16 @@ public class StarsController {
     return "home";
   }
 
-  @RequestMapping("/star/{name}")
-  public String starDetails(@PathVariable String name, Model model) {
-    Star star = starRepository.findByName(name);
+  @RequestMapping("/star/{id}")
+  public String starDetails(@PathVariable Long id, Model model) {
+    Star star = starService.findById(id);
     model.addAttribute("star", star);
     return "star-details";
   }
 
   @RequestMapping("/search")
   public String searchStars (@RequestParam String q, Model model) {
-    List<Star> stars = starRepository.searchByName(q);
+    List<Star> stars = starService.searchByName(q);
     model.addAttribute("stars", stars);
     return "search";
   }

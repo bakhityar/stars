@@ -9,4 +9,6 @@ public interface StarDao {
   Star findById(Long id);
   void save(Star star);
   void delete(Star star);
+  List<Star> searchByName(String q);
+
 }

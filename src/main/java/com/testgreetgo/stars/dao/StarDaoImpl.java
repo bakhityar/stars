@@ -2,6 +2,7 @@ package com.testgreetgo.stars.dao;
 
 import com.testgreetgo.stars.model.Star;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,15 @@ public class StarDaoImpl implements StarDao {
 
 
   @Override
+  public List<Star> searchByName(String q) {
+    Session session = sessionFactory.openSession();
+    Query query = session.createQuery("from Star S where S.name like :q");
+    query.setParameter("q", "%"+q+"%");
+    List<Star> stars = query.list();
+    return stars;
+  }
+
+  @Override
   @SuppressWarnings("unchecked")
   public List<Star> findAll() {
     Session session = sessionFactory.openSession();
@@ -27,7 +37,10 @@ public class StarDaoImpl implements StarDao {
 
   @Override
   public Star findById(Long id) {
-    return null;
+    Session session = sessionFactory.openSession();
+    Star star = session.get(Star.class, id);
+    session.close();
+    return star;
   }
 
   @Override

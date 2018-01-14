@@ -11,7 +11,7 @@
     <link rel="stylesheet" th:href="@{/app.css}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
 
-    <title>giflib | Home</title>
+    <title>Звезды</title>
 </head>
 <body>
     <div class="navbar-fixed">
@@ -19,16 +19,6 @@
             <div class="container">
                 <a th:href="@{/}" class="brand-logo">Stars<span>.</span>GO</a>
                 <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li class="active"><a th:href="@{/}">Explore</a></li>
-                    <li><a th:href="@{/categories}">Categories</a></li>
-                    <li><a th:href="@{/favorites}">Favorites</a></li>
-                </ul>
-                <ul id="mobile-nav" class="side-nav">
-                    <li class="active"><a th:href="@{/}">Explore</a></li>
-                    <li><a th:href="@{/categories}">Categories</a></li>
-                    <li><a th:href="@{/favorites}">Favorites</a></li>
-                </ul>
             </div>
         </nav>
     </div>
@@ -37,31 +27,40 @@
             <div class="col s12">
                 <form th:action="@{/search}" method="get">
                     <div class="input-field">
-                        <input name="q" type="search" placeholder="Search all gifs..." required="required" autocomplete="off"/>
+                        <input name="q" type="search" placeholder="Поиск звезды" required="required" autocomplete="off"/>
                         <i class="material-icons">search</i>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="gifs container">
+    <div class="starss container">
+        <div class="alert alert-success" th:if="${flash}" th:text="${flash.message}">Новый ученик добавлен</div>
+        <div class="row">
+            <div class="col s9">
+                <h2 class="purplep">Звезды</h2>
+            </div>
+            <div class="col s3">
+                <a class="right add purplep" href="/add"><h1 class="purplep">+</h1></a>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Latitude</th>
-                <th scope="col">Longitude</th>
-                <th scope="col">Color</th>
-                <th scope="col">Discoverer</th>
+                <th scope="col">Наименование</th>
+                <th scope="col">Широта</th>
+                <th scope="col">Долгота</th>
+                <th scope="col">Цвет</th>
+                <th scope="col">Открыватель</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="star : ${stars}">
-                <td> <a th:text="${star.name}" th:href="@{'/star/' + ${star.id}}">Mark</a></td>
-                <td> <a th:text="${star.xCoord}" th:href="@{'/star/' + ${star.id}}">Otto</a></td>
-                <td> <a th:text="${star.yCoord}" th:href="@{'/star/' + ${star.id}}">@mdo</a></td>
-                <td> <a th:text="${star.color}" th:href="@{'/star/' + ${star.id}}">@mdo</a></td>
-                <td> <a th:text="${star.discoverer}" th:href="@{'/star/' + ${star.id}}">@mdo</a></td>
+                <td> <a class="purplep" th:text="${star.name}" th:href="@{'/star/' + ${star.id}}"></a></td>
+                <td> <a class="purplep" th:text="${star.xCoord}" th:href="@{'/star/' + ${star.id}}"></a></td>
+                <td> <a class="purplep" th:text="${star.yCoord}" th:href="@{'/star/' + ${star.id}}"></a></td>
+                <td> <a class="purplep" th:text="color" th:style="|background:${star.color}; color:${star.color}; padding: 0 3px; border: 0.5px black solid;|" th:href="@{'/star/' + ${star.id}}"></a></td>
+                <td> <a class="purplep" th:text="${star.discoverer}" th:href="@{'/star/' + ${star.id}}"></a></td>
             </tr>
             </tbody>
         </table>

@@ -4,11 +4,11 @@ public enum Color {
 
   BLUE("Голубой","#0099ff"),
   WHITEBLUE("Бело-голубой","#ccebff"),
-  WHITE("Белый","#ffffff"),
+  WHITE("Белый","white"),
   WHITEYELLOW("Желто-белый","#ffffcc"),
-  YELLOW("Желтый","#ffff00"),
-  ORANGE("Оранжевый","#ffa500"),
-  RED("Красный","#FF0000");
+  YELLOW("Желтый","yellow"),
+  ORANGE("Оранжевый","orange"),
+  RED("Красный","red");
 
   private final String name;
   private final String hexCode;

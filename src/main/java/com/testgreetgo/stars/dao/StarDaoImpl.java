@@ -47,7 +47,7 @@ public class StarDaoImpl implements StarDao {
   public void save(Star star) {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    session.save(star);
+    session.saveOrUpdate(star);
     session.getTransaction().commit();
     session.close();
   }

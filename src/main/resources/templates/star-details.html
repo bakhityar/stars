@@ -11,7 +11,7 @@
     <link rel="stylesheet" th:href="@{/app.css}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
 
-    <title th:text="'Stars | ' + ${star.name}">giflib</title>
+    <title th:text="'Звезды | ' + ${star.name}">Звезды</title>
 </head>
 <body>
     <div class="navbar-fixed">
@@ -19,16 +19,6 @@
             <div class="container">
                 <a th:href="@{/}" class="brand-logo">Stars<span>.</span>GO</a>
                 <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li class="active"><a th:href="@{/}">Explore</a></li>
-                    <li><a th:href="@{/categories}">Categories</a></li>
-                    <li><a th:href="@{/favorites}">Favorites</a></li>
-                </ul>
-                <ul id="mobile-nav" class="side-nav">
-                    <li class="active"><a th:href="@{/}">Explore</a></li>
-                    <li><a th:href="@{/categories}">Categories</a></li>
-                    <li><a th:href="@{/favorites}">Favorites</a></li>
-                </ul>
             </div>
         </nav>
     </div>
@@ -37,7 +27,7 @@
             <div class="col s12">
                 <form th:action="@{/search}" method="get">
                     <div class="input-field">
-                        <input name="q" type="search" placeholder="Search all gifs..." required="required" autocomplete="off"/>
+                        <input name="q" type="search" placeholder="Поиск звезды" required="required" autocomplete="off"/>
                         <i class="material-icons">search</i>
                     </div>
                 </form>
@@ -50,26 +40,33 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Latitude</th>
-                    <th scope="col">Longitude</th>
-                    <th scope="col">Color</th>
-                    <th scope="col">Discoverer</th>
+                    <th scope="col">Наименование</th>
+                    <th scope="col">Широта</th>
+                    <th scope="col">Долгота</th>
+                    <th scope="col">Цвет</th>
+                    <th scope="col">Открыватель</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td th:text="${star.name}">Mark</td>
-                    <td th:text="${star.xCoord}">Otto</td>
-                    <td th:text="${star.yCoord}">@mdo</td>
-                    <td th:text="${star.color}">@mdo</td>
-                    <td th:text="${star.discoverer}">@mdo</td>
+                    <td class="purplep" th:text="${star.name}">Mark</td>
+                    <td class="purplep" th:text="${star.xCoord}">Otto</td>
+                    <td class="purplep" th:text="${star.yCoord}">@mdo</td>
+                    <td class="purplep" th:text="${star.color}">@mdo</td>
+                    <td class="purplep" th:text="${star.discoverer}">@mdo</td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </form>
-
+    <div class="container">
+        <div class="row">
+            <form th:action="@{|/star/${star.id}/delete|}" method="post">
+                <button class="button" type="submit">Удалить</button>
+                <a th:href="@{|/star/${star.id}/edit|}" class="button">Изменить</a>
+            </form>
+        </div>
+    </div>
 <script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
 <script th:src="@{/vendor/materialize/js/materialize.js}"></script>
 <script th:src="@{/app.js}"></script>

@@ -1,6 +1,7 @@
 h2 {
     font-size: 1.6rem;
     margin-bottom: 0;
+    color: red;
 }
 
 nav {
@@ -23,6 +24,8 @@ nav ul li a, nav .brand-logo span {
 nav ul li.active, nav ul li:hover {
     background-color: inherit;
 }
+
+
 
 #mobile-nav, #mobile-nav li.active, #mobile-nav li:hover {
     background-color: #37333d;
@@ -78,15 +81,15 @@ nav ul li.active, nav ul li:hover {
     color: #757378;
 }
 
-.gifs.container .col:nth-child(3n+1) {
+.starss.container .col:nth-child(3n+1) {
     padding-left: 0;
 }
 
-.gifs.container .col:nth-child(3n+3) {
+.starss.container .col:nth-child(3n+3) {
     padding-right: 0;
 }
 
-.gifs img {
+.starss img {
     height: 220px;
     width: 100%;
     border-radius: 6px;
@@ -117,7 +120,7 @@ nav ul li.active, nav ul li:hover {
     right: 0;
 }
 
-.gif-detail .favorite {
+.starr-detail .favorite {
     right: 0;
 }
 
@@ -129,19 +132,19 @@ nav ul li.active, nav ul li:hover {
     background: url(icons/unfavorite.png) no-repeat 0 0;
 }
 
-.gif-detail .meta {
+.starr-detail .meta {
     margin-bottom: 0.6rem;
 }
 
-.gif-detail .divider {
+.starr-detail .divider {
     margin-bottom: 0;
 }
 
-.gif-detail .col {
+.starr-detail .col {
     padding-right: 0;
 }
 
-.gif-detail .frame .col {
+.starr-detail .frame .col {
     padding: 1.5rem 5rem;
     text-align: center;
     border: 1px solid #e3e1e6;
@@ -149,19 +152,19 @@ nav ul li.active, nav ul li:hover {
     border-radius: 6px;
 }
 
-.gif-detail img {
+.starr-detail img {
     display: inline-block;
     width: 100%;
 }
 
-.gif-detail .meta h4 {
+.starr-detail .meta h4 {
     color: #896bb3;
     font-size: 1.5rem;
     margin-bottom: 0.6rem;
     margin-top: 0.2rem;
 }
 
-.gif-detail .meta p {
+.starr-detail .meta p {
     margin-top: 3px 0;
     color: #a9a7ac;
 }
@@ -319,9 +322,9 @@ h2 {
     color: #886ab2;
 }
 
-.gifs.container h2 {
+.starss.container h2 {
     padding-bottom: 10px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 0px solid #e0e0e0;
     margin-bottom: 20px;
 }
 
@@ -613,12 +616,12 @@ label.button {
         width: 100%;
     }
 
-    .gifs.container {
+    .starss.container {
         padding: 0;
         margin-top: 1.1rem;
     }
 
-    .gifs.container .col {
+    .starss.container .col {
         padding: 0 0.75rem !important;
     }
 
@@ -655,44 +658,44 @@ label.button {
         right: 1rem;
     }
 
-    .gifs {
+    .starss {
         padding: 0 1.5rem;
     }
 
-    .gifs img {
+    .starss img {
         width: 100%;
     }
 
-    .gif-detail .meta {
+    .starr-detail .meta {
         margin-bottom: 1.2rem;
     }
 
-    .gif-detail .divider {
+    .starr-detail .divider {
         margin-bottom: 0.6rem;
     }
 
-    .gif-detail .frame .col {
+    .starr-detail .frame .col {
         padding: 0 1rem;
         background: none;
         border: none;
     }
 
-    .gif-detail .col {
+    .starr-detail .col {
         margin-bottom: 0.1rem;
     }
 
-    .gif-detail .col {
+    .starr-detail .col {
         padding-right: 1rem;
     }
 
-    .gif-detail img {
+    .starr-detail img {
         border-radius: 6px;
     }
-    .gif-detail .favorite {
+    .starr-detail .favorite {
         right: 1rem;
     }
 
-    .gif-detail .meta .circle {
+    .starr-detail .meta .circle {
         border-radius: 50%;
     }
 
@@ -791,7 +794,7 @@ label.button {
         top: -67px;
     }
 
-    .gifs.container h2 {
+    .starss.container h2 {
         margin-left: 12px;
         margin-right: 12px;
     }
@@ -799,6 +802,13 @@ label.button {
     .col:nth-child(3n) .favorite {
         right: 0.75rem;
     }
+}
+
+.purplep, .purplep:hover{
+    border:0;
+    color: #886ab2;
+    size: 2rem;
+    text-decoration:none;
 }
 
 /* Bugs in Materialize */
@@ -811,4 +821,5 @@ label.button {
     .row .col.offset-l1 {
         margin-left: 8.33333%;
     }
+
 }

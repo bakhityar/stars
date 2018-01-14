@@ -8,10 +8,11 @@
 
     <link rel="stylesheet" th:href="@{/vendor/materialize/css/materialize.css}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
     <link rel="stylesheet" th:href="@{/app.css}" />
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>-->
 
-    <title>Stars | Home</title>
+
+    <title th:text="'Звезды | ' + ${heading}">Звезды | Редактирование</title>
 </head>
 <body>
     <div class="navbar-fixed">
@@ -19,16 +20,6 @@
             <div class="container">
                 <a th:href="@{/}" class="brand-logo">Stars<span>.</span>GO</a>
                 <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li class="active"><a th:href="@{/}">Explore</a></li>
-                    <li><a th:href="@{/categories}">Categories</a></li>
-                    <li><a th:href="@{/favorites}">Favorites</a></li>
-                </ul>
-                <ul id="mobile-nav" class="side-nav">
-                    <li class="active"><a th:href="@{/}">Explore</a></li>
-                    <li><a th:href="@{/categories}">Categories</a></li>
-                    <li><a th:href="@{/favorites}">Favorites</a></li>
-                </ul>
             </div>
         </nav>
     </div>
@@ -37,34 +28,39 @@
             <div class="col s12">
                 <form th:action="@{/search}" method="get">
                     <div class="input-field">
-                        <input name="q" type="search" placeholder="Search all gifs..." required="required" autocomplete="off"/>
+                        <input name="q" type="search" placeholder="Поиск звезды" required="required" autocomplete="off"/>
                         <i class="material-icons">search</i>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="gifs container">
-        <form th:action="@{/}" method="post" th:object="${star}">
+    <div class="starss container">
+        <form th:action="@{${action}}" method="post" th:object="${star}">
+            <input type="hidden" th:field="*{id}"/>
             <div class="row">
                 <div class="col s12">
-                    <h2>New Category</h2>
+                    <h2 th:text="${heading}">New Category</h2>
                 </div>
             </div>
             <div class="divider"></div>
             <div class="row">
-                <div class="col s12 l8">
+                <div class="col s12 l8" th:classappend="${#fields.hasErrors('name')}? 'error' : ''">
                     <input type="text" th:field="*{name}" placeholder="Название звезды"/>
+                    <div class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                 </div>
             </div>
             <div class="row">
-                <div class="col s12 l8">
+                <div class="col s12 l8" th:classappend="${#fields.hasErrors('xCoord')}? 'error' : ''">
                     <input type="text" th:field="*{xCoord}" placeholder="Широта"/>
+                    <div class="error-message" th:if="${#fields.hasErrors('xCoord')}" th:errors="*{xCoord}"></div>
                 </div>
             </div>
             <div class="row">
-                <div class="col s12 l8">
+                <div class="col s12 l8" th:classappend="${#fields.hasErrors('yCoord')}? 'error' : ''">
                     <input type="text" th:field="*{yCoord}" placeholder="Долгота"/>
+                    <div class="error-message" th:if="${#fields.hasErrors('yCoord')}" th:errors="*{yCoord}"></div>
+
                 </div>
             </div>
             <div class="row">
@@ -85,8 +81,8 @@
             </div>
             <div class="row">
                 <div class="col s12 l8">
-                    <button type="submit" class="button">Add</button>
-                    <a th:href="@{/}" class="button">Cancel</a>
+                    <button th:text="${submit}" type="submit" class="button">Add</button>
+                    <a th:href="@{/}" class="button">Отменить</a>
                 </div>
             </div>
         </form>
@@ -95,8 +91,8 @@
 <script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
 <script th:src="@{/vendor/materialize/js/materialize.js}"></script>
 <script th:src="@{/app.js}"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 </body>
 </html>

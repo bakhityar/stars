@@ -45,35 +45,40 @@
             </div>
             <div class="divider"></div>
             <div class="row">
+                <label for="name" class="col-sm-2 col-form-label">Наименование</label>
                 <div class="col s12 l8" th:classappend="${#fields.hasErrors('name')}? 'error' : ''">
-                    <input type="text" th:field="*{name}" placeholder="Название звезды"/>
+                    <input type="text" th:field="*{name}" id="name" placeholder="Название звезды"/>
                     <div class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                 </div>
             </div>
             <div class="row">
+                <label for="xCoord" class="col-sm-2 col-form-label">Широта</label>
                 <div class="col s12 l8" th:classappend="${#fields.hasErrors('xCoord')}? 'error' : ''">
-                    <input type="text" th:field="*{xCoord}" placeholder="Широта"/>
+                    <input type="text" th:field="*{xCoord}" id="xCoord" placeholder="Широта"/>
                     <div class="error-message" th:if="${#fields.hasErrors('xCoord')}" th:errors="*{xCoord}"></div>
                 </div>
             </div>
             <div class="row">
+                <label for="yCoord" class="col-sm-2 col-form-label">Долгота</label>
                 <div class="col s12 l8" th:classappend="${#fields.hasErrors('yCoord')}? 'error' : ''">
-                    <input type="text" th:field="*{yCoord}" placeholder="Долгота"/>
+                    <input type="text" th:field="*{yCoord}" id="yCoord" placeholder="Долгота"/>
                     <div class="error-message" th:if="${#fields.hasErrors('yCoord')}" th:errors="*{yCoord}"></div>
 
                 </div>
             </div>
             <div class="row">
+                <label for="color" class="col-sm-2 col-form-label">Цвет</label>
                 <div class="col s12 l8">
-                    <select th:field="*{color}" class="cs-select cs-skin-border">
+                    <select th:field="*{color}" id="color" class="cs-select cs-skin-border">
                         <option value="" disabled="disabled">Цвет Звезды</option>
                         <option th:each="color : ${colors}" th:value="${color.hexCode}" th:text="${color.name}" th:style="|color:${color.hexCode}|">Aqua</option>
                     </select>
                 </div>
             </div>
             <div class="row">
+                <label for="discoverer" class="col-sm-2 col-form-label">Открыватель</label>
                 <div class="col s12 l8">
-                    <select th:field="*{discoverer}" class="cs-select cs-skin-border">
+                    <select th:field="*{discoverer}" id="discoverer" class="cs-select cs-skin-border">
                         <option value="" disabled="disabled">Первооткрыватель</option>
                         <option th:each="discoverer : ${discoverers}" th:value="${discoverer.name}" th:text="${discoverer.name}">Аристотель</option>
                     </select>

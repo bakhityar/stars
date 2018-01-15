@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="starss container">
-        <div class="alert alert-success" th:if="${flash}" th:text="${flash.message}">Новый ученик добавлен</div>
+        <div class="alert" th:if="${flash}" th:classappend="(${#strings.contains(flash.status,'SUCCESS')})? 'alert-success' : 'alert-danger'" th:text="${flash.message}">Новый ученик добавлен</div>
         <div class="row">
             <div class="col s9">
                 <h2 class="purplep">Звезды</h2>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="icon" th:href="@{/favicon.png}" />
+
+    <link rel="stylesheet" type="text/css" th:href="@{/vendor/materialize/css/materialize.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/app.css}" />
+    <title>Звезды | Авторизация</title>
+</head>
+<body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="container">
+                <a th:href="@{/}" class="brand-logo">Stars<span>.</span>GO</a>
+                <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
+            </div>
+        </nav>
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div class="starss container">
+            <div class="alert alert-danger" th:if="${param.error}">
+                Неверный Логин или Пароль!
+            </div>
+            <div class="row">
+                <label for="name1" class="col-sm-2 col-form-label">Логин</label>
+                <div class="col s12 l8">
+                    <input type="text" name="username" id="name1" placeholder="Логин"/>
+                </div>
+            </div>
+            <div class="row">
+                <label for="pass" class="col-sm-2 col-form-label">Пароль</label>
+                <div class="col s12 l8">
+                    <input type="password" name="password" id="pass" placeholder="Пароль"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 l8">
+                    <button type="submit" class="button">Войти</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+<script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
+<script th:src="@{/vendor/materialize/js/materialize.js}"></script>
+<script th:src="@{/app.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+</body>
+</html>

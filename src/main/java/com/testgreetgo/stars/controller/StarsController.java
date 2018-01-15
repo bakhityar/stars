@@ -106,10 +106,18 @@ public class StarsController {
   @RequestMapping(value = "/star/{id}/delete", method = RequestMethod.POST)
   public String deleteStar(@PathVariable Long id, RedirectAttributes redirectAttributes) {
     Star star = starService.findById(id);
+    if (star.getColor().equals("yellow")) {
+      redirectAttributes.addFlashAttribute("flash", new FlashMessage("Желтую звезду удалять нельзя!", FlashMessage.Status.FAILURE));
+      return "redirect:/";
+    }
     starService.delete(star);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Звезда удалена!", FlashMessage.Status.SUCCESS));
     return "redirect:/";
   }
 
+  @RequestMapping("/login")
+  public String loginForm() {
+    return "login";
+  }
 
 }

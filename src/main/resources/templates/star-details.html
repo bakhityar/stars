@@ -10,7 +10,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" th:href="@{/app.css}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
-
+    <script language="JavaScript" type="text/javascript">
+        function checkDelete(){
+        return confirm('Are you sure?');
+}
+    </script>
     <title th:text="'Звезды | ' + ${star.name}">Звезды</title>
 </head>
 <body>
@@ -62,12 +66,14 @@
     <div class="container">
         <div class="row">
             <form th:action="@{|/star/${star.id}/delete|}" method="post">
-                <button class="button" type="submit">Удалить</button>
+                <!--<button class="button" type="submit" onclick="if (!confirm('Are you sure?')) { return false }">Удалить</button>-->
+                <button class="button" type="submit" onclick="return checkDelete()">Удалить</button>
                 <a th:href="@{|/star/${star.id}/edit|}" class="button">Изменить</a>
             </form>
         </div>
     </div>
-<script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
+
+    <script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
 <script th:src="@{/vendor/materialize/js/materialize.js}"></script>
 <script th:src="@{/app.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

@@ -22,11 +22,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .permitAll()
         .and()
         .logout().permitAll();
+
   }
 
   @Override
   public void configure(WebSecurity web) throws Exception {
-    web.ignoring().antMatchers();
+    web.ignoring().antMatchers( "/app.css", "/materialize.css", "/favicon.png");
   }
 
   @Configuration

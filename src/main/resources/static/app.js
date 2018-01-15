@@ -44,6 +44,15 @@ $(function(){
         }
     };
 
+    function ConfirmDelete()
+    {
+      var x = confirm("Are you sure you want to delete?");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+
     // Activate Codrops select magic
     (function() {
         [].slice.call( document.querySelectorAll( 'select' ) ).forEach( function(el) {

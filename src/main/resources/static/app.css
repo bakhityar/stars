@@ -448,7 +448,7 @@ form .row .col {
     margin-bottom: 0;
 }
 
-input[type=text] {
+input[type=text], #pass {
     display: block;
     border: 1px solid #dad7de;
     border-radius: 6px;
@@ -460,6 +460,12 @@ input[type=text] {
     box-sizing: border-box;
     margin-bottom: 0;
     color: #7a7580;
+    width: 40%;
+    margin-bottom: 10px;
+}
+
+#pass {
+    margin-top: 10px;
 }
 
 select {
@@ -474,6 +480,16 @@ select {
     box-sizing: border-box;
     margin-bottom: 0;
     color: #7a7580;
+}
+
+.col-form-label {
+font-size: 1.4rem;
+color: #886ab2;
+}
+
+.cs-skin-border {
+    width: 40%;
+    margin-bottom: 10px;
 }
 
 input[type=text]:focus:not([readonly]) {
@@ -809,11 +825,6 @@ label.button {
     color: #886ab2;
     size: 2rem;
     text-decoration:none;
-}
-
-.col-form-label {
-font-size: 1.4rem;
-color: #886ab2;
 }
 
 /* Bugs in Materialize */

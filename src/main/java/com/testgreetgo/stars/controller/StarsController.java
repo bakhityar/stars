@@ -1,6 +1,7 @@
 package com.testgreetgo.stars.controller;
 
 import com.testgreetgo.stars.data.StarRepository;
+import com.testgreetgo.stars.model.Discoverers;
 import com.testgreetgo.stars.model.FlashMessage;
 import com.testgreetgo.stars.model.Star;
 import com.testgreetgo.stars.model.Color;
@@ -71,7 +72,8 @@ public class StarsController {
       model.addAttribute("star", new Star());
     }
     model.addAttribute("colors", Color.values());
-    model.addAttribute("discoverers", Discoverer.values());
+    List<String> discs = new Discoverers().getDiscoverers();
+    model.addAttribute("discoverers", discs);
     model.addAttribute("action", "/");
     model.addAttribute("heading", "Новая звезда");
     model.addAttribute("submit", "Добавить");
@@ -96,7 +98,8 @@ public class StarsController {
       model.addAttribute("star", starService.findById(id));
     }
     model.addAttribute("colors", Color.values());
-    model.addAttribute("discoverers", Discoverer.values());
+    List<String> discs = new Discoverers().getDiscoverers();
+    model.addAttribute("discoverers", discs);
     model.addAttribute("action", String.format("/star/%s", id));
     model.addAttribute("heading", "Редактирование");
     model.addAttribute("submit", "Изменить");

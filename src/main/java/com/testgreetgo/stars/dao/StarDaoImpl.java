@@ -18,6 +18,7 @@ public class StarDaoImpl implements StarDao {
 
 
   @Override
+  @SuppressWarnings("unchecked")
   public List<Star> searchByName(String q) {
     Session session = sessionFactory.openSession();
     Query query = session.createQuery("from Star S where S.name like :q");

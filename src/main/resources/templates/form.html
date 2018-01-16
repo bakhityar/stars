@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
     <link rel="stylesheet" th:href="@{/app.css}" />
-
-
     <title th:text="'Звезды | ' + ${heading}">Звезды | Редактирование</title>
 </head>
 <body>
@@ -80,7 +78,7 @@
                 <div class="col s12 l8">
                     <select th:field="*{discoverer}" id="discoverer" class="cs-select cs-skin-border">
                         <option value="" disabled="disabled">Первооткрыватель</option>
-                        <option th:each="discoverer : ${discoverers}" th:value="${discoverer.name}" th:text="${discoverer.name}">Аристотель</option>
+                        <option th:each="discoverer : ${discoverers}" th:value="${discoverer}" th:text="${discoverer}">Аристотель</option>
                     </select>
                 </div>
             </div>

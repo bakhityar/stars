@@ -27,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(WebSecurity web) throws Exception {
-    web.ignoring().antMatchers( "/app.css", "/materialize.css", "/favicon.png");
+    web.ignoring().antMatchers( "/vendor/**", "/app.css", "/favicon.png");
   }
 
   @Configuration

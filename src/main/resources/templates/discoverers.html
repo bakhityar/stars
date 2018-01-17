@@ -10,19 +10,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" th:href="@{/app.css}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+
     <script language="JavaScript" type="text/javascript">
         function checkDelete(){
-        return confirm('Вы уверены что хотите удалить звезду?');
+        return confirm('Вы уверены что хотите удалить открывателя?');
 }
     </script>
-    <title th:text="'Звезды | ' + ${star.name}">Звезды</title>
+    <title>Звезды</title>
 </head>
 <body>
     <div class="navbar-fixed">
         <nav>
             <div class="container">
                 <a th:href="@{/}" class="brand-logo">Stars<span>.</span>GO</a>
-                <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
             </div>
         </nav>
     </div>
@@ -38,42 +38,39 @@
             </div>
         </div>
     </div>
-    <form th:object="${star}">
-        <div class="container">
-
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">Наименование</th>
-                    <th scope="col">Широта</th>
-                    <th scope="col">Долгота</th>
-                    <th scope="col">Цвет</th>
-                    <th scope="col">Открыватель</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="purplep" th:text="${star.name}">Mark</td>
-                    <td class="purplep" th:text="${star.xCoord}">Otto</td>
-                    <td class="purplep" th:text="${star.yCoord}">@mdo</td>
-                    <td class="purplep" th:text="${star.color}">@mdo</td>
-                    <td class="purplep" th:text="${star.discoverer}">@mdo</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </form>
-    <div class="container">
+    <div class="starss container">
+        <div class="alert" th:if="${flash}" th:classappend="(${#strings.contains(flash.status,'SUCCESS')})? 'alert-success' : 'alert-danger'" th:text="${flash.message}">Новый ученик добавлен</div>
         <div class="row">
-            <form th:action="@{|/star/${star.id}/delete|}" method="post">
-                <!--<button class="button" type="submit" onclick="if (!confirm('Are you sure?')) { return false }">Удалить</button>-->
-                <button class="button" type="submit" onclick="return checkDelete()">Удалить</button>
-                <a th:href="@{|/star/${star.id}/edit|}" class="button">Изменить</a>
-            </form>
+            <div class="col s9">
+                <h2 class="purplep">Открыватели</h2>
+            </div>
+            <div class="col s3">
+                <a class="right add purplep" href="/discoverers/add"><h1 class="purplep">+</h1></a>
+            </div>
         </div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Наименование</th>
+                <th scope="col">Редактировать</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="discoverer : ${discoverers}">
+                <td> <a class="purplep" th:text="${discoverer.name}" th:href="@{'/discoverers/' + ${discoverer.id}}"></a></td>
+                <td>
+                    <form th:action="@{|/discoverers/${discoverer.id}/delete|}" method="post">
+                        <!--<button class="button" type="submit" onclick="if (!confirm('Are you sure?')) { return false }">Удалить</button>-->
+                        <button class="button" type="submit" onclick="return checkDelete()">Удалить</button>
+                        <a th:href="@{|/discoverers/${discoverer.id}/edit|}" class="button">Изменить</a>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
-    <script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
+<script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
 <script th:src="@{/vendor/materialize/js/materialize.js}"></script>
 <script th:src="@{/app.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

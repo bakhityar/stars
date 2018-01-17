@@ -8,14 +8,9 @@
 
     <link rel="stylesheet" th:href="@{/vendor/materialize/css/materialize.css}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" th:href="@{/app.css}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
-    <script language="JavaScript" type="text/javascript">
-        function checkDelete(){
-        return confirm('Вы уверены что хотите удалить звезду?');
-}
-    </script>
-    <title th:text="'Звезды | ' + ${star.name}">Звезды</title>
+    <link rel="stylesheet" th:href="@{/app.css}" />
+    <title th:text="'Звезды | ' + ${heading}">Звезды | Редактирование</title>
 </head>
 <body>
     <div class="navbar-fixed">
@@ -38,42 +33,34 @@
             </div>
         </div>
     </div>
-    <form th:object="${star}">
-        <div class="container">
-
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th scope="col">Наименование</th>
-                    <th scope="col">Широта</th>
-                    <th scope="col">Долгота</th>
-                    <th scope="col">Цвет</th>
-                    <th scope="col">Открыватель</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="purplep" th:text="${star.name}">Mark</td>
-                    <td class="purplep" th:text="${star.xCoord}">Otto</td>
-                    <td class="purplep" th:text="${star.yCoord}">@mdo</td>
-                    <td class="purplep" th:text="${star.color}">@mdo</td>
-                    <td class="purplep" th:text="${star.discoverer}">@mdo</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </form>
-    <div class="container">
-        <div class="row">
-            <form th:action="@{|/star/${star.id}/delete|}" method="post">
-                <!--<button class="button" type="submit" onclick="if (!confirm('Are you sure?')) { return false }">Удалить</button>-->
-                <button class="button" type="submit" onclick="return checkDelete()">Удалить</button>
-                <a th:href="@{|/star/${star.id}/edit|}" class="button">Изменить</a>
-            </form>
-        </div>
+    <div class="starss container">
+        <form th:action="@{${action}}" method="post" th:object="${discoverer}">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="row">
+                <div class="col s12">
+                    <h2 th:text="${heading}">New Category</h2>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row">
+                <label for="name" class="col-sm-2 col-form-label">Открыватель</label>
+                <div class="col s12 l8" th:classappend="${#fields.hasErrors('name')}? 'error' : ''">
+                    <input type="text" th:field="*{name}" id="name" placeholder="Имя открывателя"/>
+                    <div class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label"></label>
+                <div class="col s12 l8">
+                    <button th:text="${submit}" type="submit" class="button">Add</button>
+                    <a th:href="@{/}" class="button">Отменить</a>
+                </div>
+            </div>
+        </form>
     </div>
 
-    <script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
+
+<script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
 <script th:src="@{/vendor/materialize/js/materialize.js}"></script>
 <script th:src="@{/app.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

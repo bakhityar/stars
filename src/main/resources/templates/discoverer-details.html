@@ -15,7 +15,7 @@
         return confirm('Вы уверены что хотите удалить звезду?');
 }
     </script>
-    <title th:text="'Звезды | ' + ${star.name}">Звезды</title>
+    <title th:text="'Звезды | ' + ${discoverer.name}">Звезды</title>
 </head>
 <body>
     <div class="navbar-fixed">
@@ -38,26 +38,18 @@
             </div>
         </div>
     </div>
-    <form th:object="${star}">
+    <form th:object="${discoverer}">
         <div class="container">
 
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th scope="col">Наименование</th>
-                    <th scope="col">Широта</th>
-                    <th scope="col">Долгота</th>
-                    <th scope="col">Цвет</th>
-                    <th scope="col">Открыватель</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td class="purplep" th:text="${star.name}">Mark</td>
-                    <td class="purplep" th:text="${star.xCoord}">Otto</td>
-                    <td class="purplep" th:text="${star.yCoord}">@mdo</td>
-                    <td class="purplep" th:text="${star.color}">@mdo</td>
-                    <td class="purplep" th:text="${star.discoverer}">@mdo</td>
+                    <td class="purplep" th:text="${discoverer.name}">Mark</td>
                 </tr>
                 </tbody>
             </table>
@@ -65,10 +57,10 @@
     </form>
     <div class="container">
         <div class="row">
-            <form th:action="@{|/star/${star.id}/delete|}" method="post">
+            <form th:action="@{|/discoverers/${discoverer.id}/delete|}" method="post">
                 <!--<button class="button" type="submit" onclick="if (!confirm('Are you sure?')) { return false }">Удалить</button>-->
                 <button class="button" type="submit" onclick="return checkDelete()">Удалить</button>
-                <a th:href="@{|/star/${star.id}/edit|}" class="button">Изменить</a>
+                <a th:href="@{|/discoverers/${discoverer.id}/edit|}" class="button">Изменить</a>
             </form>
         </div>
     </div>

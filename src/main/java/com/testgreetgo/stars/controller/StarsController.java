@@ -1,14 +1,10 @@
 package com.testgreetgo.stars.controller;
 
-import com.testgreetgo.stars.data.StarRepository;
-import com.testgreetgo.stars.model.Discoverers;
 import com.testgreetgo.stars.model.FlashMessage;
 import com.testgreetgo.stars.model.Star;
 import com.testgreetgo.stars.model.Color;
-import com.testgreetgo.stars.model.Discoverer;
+import com.testgreetgo.stars.service.DiscoverersService;
 import com.testgreetgo.stars.service.StarService;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -30,7 +25,7 @@ public class StarsController {
   private StarService starService;
 
   @Autowired
-  private StarRepository starRepository;
+  private DiscoverersService discoverersService;
 
   @RequestMapping("/")
   @SuppressWarnings("unchecked")
@@ -72,8 +67,7 @@ public class StarsController {
       model.addAttribute("star", new Star());
     }
     model.addAttribute("colors", Color.values());
-    List<String> discs = new Discoverers().getDiscoverers();
-    model.addAttribute("discoverers", discs);
+    model.addAttribute("discoverers", discoverersService.findAll());
     model.addAttribute("action", "/");
     model.addAttribute("heading", "Новая звезда");
     model.addAttribute("submit", "Добавить");
@@ -98,8 +92,7 @@ public class StarsController {
       model.addAttribute("star", starService.findById(id));
     }
     model.addAttribute("colors", Color.values());
-    List<String> discs = new Discoverers().getDiscoverers();
-    model.addAttribute("discoverers", discs);
+    model.addAttribute("discoverers", discoverersService.findAll());
     model.addAttribute("action", String.format("/star/%s", id));
     model.addAttribute("heading", "Редактирование");
     model.addAttribute("submit", "Изменить");
@@ -122,5 +115,12 @@ public class StarsController {
   public String loginForm() {
     return "login";
   }
+
+//  @RequestMapping("/discoverers")
+//  public String editDiscoverers(Model model) {
+//    List<String> discs = new Discoverers().getDiscoverers();
+//    model.addAttribute("discoverers", discs);
+//    return "discoverers";
+//  }
 
 }

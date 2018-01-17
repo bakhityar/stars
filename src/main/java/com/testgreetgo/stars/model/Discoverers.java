@@ -1,21 +1,38 @@
 package com.testgreetgo.stars.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+@Entity
 public class Discoverers {
-  private List<String> discoverers;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @NotNull
+  @Size(min = 2, max = 30, message = "Должно быть >2, но <30 символов")
+  private String name;
 
   public Discoverers() {
-    discoverers = Arrays.asList("Аристотель", "Галилей", "Коперник", "Галле", "Гершель");
   }
 
-  public List<String> getDiscoverers() {
-    return discoverers;
+  public Long getId() {
+    return id;
   }
 
-  public void setDiscoverers(List<String> discoverers) {
-    this.discoverers = discoverers;
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 }

@@ -78,7 +78,7 @@
                 <div class="col s12 l8">
                     <select th:field="*{discoverer}" id="discoverer" class="cs-select cs-skin-border">
                         <option value="" disabled="disabled">Первооткрыватель</option>
-                        <option th:each="discoverer : ${discoverers}" th:value="${discoverer}" th:text="${discoverer}">Аристотель</option>
+                        <option th:each="discoverer : ${discoverers}" th:value="${discoverer.name}" th:text="${discoverer.name}">Аристотель</option>
                     </select>
                 </div>
             </div>
@@ -91,6 +91,7 @@
             </div>
         </form>
     </div>
+
 
 <script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
 <script th:src="@{/vendor/materialize/js/materialize.js}"></script>

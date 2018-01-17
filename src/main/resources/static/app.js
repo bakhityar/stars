@@ -53,6 +53,13 @@ $(function(){
         return false;
     }
 
+    function addItem(){
+        var ul = document.getElementById("add-disk").value;
+        $(discs).push(ul);
+
+    }
+
+
     // Activate Codrops select magic
     (function() {
         [].slice.call( document.querySelectorAll( 'select' ) ).forEach( function(el) {

@@ -1,9 +1,6 @@
 package com.testgreetgo.stars.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -23,7 +20,11 @@ public class Star {
   @Size(min = 2, max = 10, message = "Должно быть >2, но <30 символов")
   private String yCoord;
   private String color;
-  private String discoverer;
+  @ManyToOne
+  @JoinColumn(name = "discoverer_id",
+              foreignKey = @ForeignKey(name = "PERSON_ID_FK")
+  )
+  private Discoverers discoverer;
 
   public Star() {
   }
@@ -68,11 +69,11 @@ public class Star {
     this.color = color;
   }
 
-  public String getDiscoverer() {
+  public Discoverers getDiscoverer() {
     return discoverer;
   }
 
-  public void setDiscoverer(String discoverer) {
+  public void setDiscoverer(Discoverers discoverer) {
     this.discoverer = discoverer;
   }
 }

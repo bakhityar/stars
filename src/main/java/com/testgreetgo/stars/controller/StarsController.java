@@ -1,5 +1,6 @@
 package com.testgreetgo.stars.controller;
 
+import com.testgreetgo.stars.model.Discoverers;
 import com.testgreetgo.stars.model.FlashMessage;
 import com.testgreetgo.stars.model.Star;
 import com.testgreetgo.stars.model.Color;
@@ -50,11 +51,17 @@ public class StarsController {
   }
 
   @RequestMapping(value = "/", method = RequestMethod.POST)
-  public String addStar(@Valid Star star, BindingResult result, RedirectAttributes redirectAttributes) {
+  public String addStar(@Valid Star star, @RequestParam String discoverername, BindingResult result, RedirectAttributes redirectAttributes) {
     if (result.hasErrors()) {
       redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.star", result);
       redirectAttributes.addFlashAttribute("star", star);
       return "redirect:/add";
+    }
+    if(discoverername != null && !discoverername.isEmpty()) {
+      Discoverers discoverers = new Discoverers();
+      discoverers.setName(discoverername);
+      discoverersService.save(discoverers);
+      star.setDiscoverer(discoverers.getName());
     }
     starService.save(star);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Звезда добавлена!", FlashMessage.Status.SUCCESS));
@@ -75,11 +82,14 @@ public class StarsController {
   }
 
   @RequestMapping(value = "/star/{id}", method = RequestMethod.POST)
-  public String updateStar(@Valid Star star, BindingResult result, RedirectAttributes redirectAttributes) {
+  public String updateStar(@Valid Star star, @RequestParam String discoverername, BindingResult result, RedirectAttributes redirectAttributes) {
     if (result.hasErrors()) {
       redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.star", result);
       redirectAttributes.addFlashAttribute("star", star);
       return String.format("redirect:/star/%s/edit", star.getId());
+    }
+    if(discoverername != null && !discoverername.isEmpty()) {
+      star.setDiscoverer(discoverername);
     }
     starService.save(star);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Звезда изменена!", FlashMessage.Status.SUCCESS));

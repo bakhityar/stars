@@ -75,11 +75,15 @@
             </div>
             <div class="row">
                 <label for="discoverer" class="col-sm-2 col-form-label">Открыватель</label>
-                <div class="col s12 l8">
+                <div class="col s8 l8">
                     <select th:field="*{discoverer}" id="discoverer" class="cs-select cs-skin-border">
                         <option value="" disabled="disabled">Первооткрыватель</option>
                         <option th:each="discoverer : ${discoverers}" th:value="${discoverer.name}" th:text="${discoverer.name}">Аристотель</option>
+                        <option value="0">Добавить нового открывателя</option>
                     </select>
+                </div>
+                <div class="col s4 l8">
+                    <input type="text" th:value="${discoverer}" id="discoverername" placeholder="Имя открывателя" name="discoverername"/>
                 </div>
             </div>
             <div class="row">

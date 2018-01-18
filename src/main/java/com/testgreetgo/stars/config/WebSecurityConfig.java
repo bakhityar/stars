@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
-      //захардкоденный логин/пароль
+      //захардкоденный логин и пароль + Роль
       auth
           .inMemoryAuthentication()
           .withUser("user").password("password").roles("ROLE");

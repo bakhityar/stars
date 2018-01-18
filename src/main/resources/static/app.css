@@ -827,6 +827,36 @@ label.button {
     text-decoration:none;
 }
 
+.hidediv {
+  display: none;
+}
+
+.button {
+  border: 1px solid black;
+  text-decoration: none;
+}
+
+.tabledisc {
+  width: 50%;
+}
+
+.leftp {
+  float: left;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+a:focus, a:hover {
+    color: #a29fa6;
+    text-decoration: none;
+}
+
+nav .rem1 {
+    font-size: 1.1rem;
+}
+
 /* Bugs in Materialize */
 @media only screen and (min-width: 993px) {
 

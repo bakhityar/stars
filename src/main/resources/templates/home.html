@@ -8,14 +8,9 @@
 
     <link rel="stylesheet" th:href="@{/vendor/materialize/css/materialize.css}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" th:href="@{/app.css}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+    <link rel="stylesheet" th:href="@{/app.css}" />
 
-    <script language="JavaScript" type="text/javascript">
-        function checkDelete(){
-        return confirm('Вы уверены что хотите удалить звезду?');
-}
-    </script>
     <title>Звезды</title>
 </head>
 <body>
@@ -23,6 +18,7 @@
         <nav>
             <div class="container">
                 <a th:href="@{/}" class="brand-logo">Stars<span>.</span>GO</a>
+                <a th:href="@{/discoverers}" class="brand-logo right rem1">Открыватели</a>
             </div>
         </nav>
     </div>
@@ -39,6 +35,7 @@
         </div>
     </div>
     <div class="starss container">
+        <!--Сообщение об успехе/неудаче-->
         <div class="alert" th:if="${flash}" th:classappend="(${#strings.contains(flash.status,'SUCCESS')})? 'alert-success' : 'alert-danger'" th:text="${flash.message}">Новый ученик добавлен</div>
         <div class="row">
             <div class="col s9">
@@ -60,16 +57,17 @@
             </tr>
             </thead>
             <tbody>
+            <!--Перебираем звезды. Объект Star передает в моделе из контроллера-->
             <tr th:each="star : ${stars}">
                 <td> <a class="purplep" th:text="${star.name}" th:href="@{'/star/' + ${star.id}}"></a></td>
                 <td> <a class="purplep" th:text="${star.xCoord}" th:href="@{'/star/' + ${star.id}}"></a></td>
                 <td> <a class="purplep" th:text="${star.yCoord}" th:href="@{'/star/' + ${star.id}}"></a></td>
                 <td> <a class="purplep" th:text="color" th:style="|background:${star.color}; color:${star.color}; padding: 0 3px; border: 0.5px black solid;|" th:href="@{'/star/' + ${star.id}}"></a></td>
-                <td> <a class="purplep" th:text="${star.discoverer}" th:href="@{'/star/' + ${star.id}}"></a></td>
+                <td> <a class="purplep" th:text="${star.discoverer.name}" th:href="@{'/star/' + ${star.id}}"></a></td>
                 <td>
+                    <!--Кнопка удалить ждет подтверждения-->
                     <form th:action="@{|/star/${star.id}/delete|}" method="post">
-                        <!--<button class="button" type="submit" onclick="if (!confirm('Are you sure?')) { return false }">Удалить</button>-->
-                        <button class="button" type="submit" onclick="return checkDelete()">Удалить</button>
+                        <button class="button" type="submit" onclick="if (!confirm('Вы уверены что хотите удалить звезду?')) { return false }">Удалить</button>
                         <a th:href="@{|/star/${star.id}/edit|}" class="button">Изменить</a>
                     </form>
                 </td>

@@ -11,6 +11,8 @@ import java.util.List;
 @Service
 public class DiscoverersServiceImpl implements DiscoverersService{
 
+  //Все в сервисе реализуется через DAO и его Autowired
+
   @Autowired
   private DiscoverersDao discoverersDao;
 

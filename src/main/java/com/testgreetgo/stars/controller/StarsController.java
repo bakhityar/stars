@@ -28,6 +28,7 @@ public class StarsController {
   @Autowired
   private DiscoverersService discoverersService;
 
+  //Домашняя страница. Список всех звезд
   @RequestMapping("/")
   @SuppressWarnings("unchecked")
   public String listStars(Model model) {
@@ -36,6 +37,7 @@ public class StarsController {
     return "home";
   }
 
+  //Одна выбранная звезда
   @RequestMapping("/star/{id}")
   public String starDetails(@PathVariable Long id, Model model) {
     Star star = starService.findById(id);
@@ -43,6 +45,7 @@ public class StarsController {
     return "star-details";
   }
 
+  //Поиск звезды. Передается параметр из поля Поиск
   @RequestMapping("/search")
   public String searchStars (@RequestParam String q, Model model) {
     List<Star> stars = starService.searchByName(q);
@@ -50,25 +53,27 @@ public class StarsController {
     return "search";
   }
 
+  //Добавление новой звезды. Если заполнено поле
   @RequestMapping(value = "/", method = RequestMethod.POST)
-  public String addStar(@Valid Star star, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+  public String addStar(@Valid Star star, BindingResult result, @RequestParam String discoverername, Model model, RedirectAttributes redirectAttributes) {
     model.addAttribute("discoverers", discoverersService.findAll());
     if (result.hasErrors()) {
       redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.star", result);
       redirectAttributes.addFlashAttribute("star", star);
       return "redirect:/add";
     }
-//    if(discoverername != null && !discoverername.isEmpty()) {
-//      Discoverers discoverers = new Discoverers();
-//      discoverers.setName(discoverername);
-//      discoverersService.save(discoverers);
-//      star.setDiscoverer(discoverers);
-//    }
+    if(discoverername != null && !discoverername.isEmpty()) {
+      Discoverers discoverers = new Discoverers();
+      discoverers.setName(discoverername);
+      discoverersService.save(discoverers);
+      star.setDiscoverer(discoverers);
+    }
     starService.save(star);
     redirectAttributes.addFlashAttribute("flash", new FlashMessage("Звезда добавлена!", FlashMessage.Status.SUCCESS));
     return "redirect:/";
   }
 
+  //Форма добавления новой звезды
   @RequestMapping("/add")
   public String formNewStar(Model model) {
     if (!model.containsAttribute("star")) {
@@ -82,6 +87,7 @@ public class StarsController {
     return "form";
   }
 
+  //Редактирование звезды
   @RequestMapping(value = "/star/{id}", method = RequestMethod.POST)
   public String updateStar(@Valid Star star, @RequestParam String discoverername, BindingResult result, RedirectAttributes redirectAttributes) {
     if (result.hasErrors()) {
@@ -97,6 +103,7 @@ public class StarsController {
     return "redirect:/";
   }
 
+  //Форма редактирования звезды
   @RequestMapping("/star/{id}/edit")
   public String formEditStar(@PathVariable Long id, Model model) {
     if (!model.containsAttribute("star")) {
@@ -110,6 +117,7 @@ public class StarsController {
     return "form";
   }
 
+  //Удаление звезды
   @RequestMapping(value = "/star/{id}/delete", method = RequestMethod.POST)
   public String deleteStar(@PathVariable Long id, RedirectAttributes redirectAttributes) {
     Star star = starService.findById(id);
@@ -122,16 +130,11 @@ public class StarsController {
     return "redirect:/";
   }
 
+  //Форма авторизации
   @RequestMapping("/login")
   public String loginForm() {
     return "login";
   }
 
-//  @RequestMapping("/discoverers")
-//  public String editDiscoverers(Model model) {
-//    List<String> discs = new Discoverers().getDiscoverers();
-//    model.addAttribute("discoverers", discs);
-//    return "discoverers";
-//  }
 
 }

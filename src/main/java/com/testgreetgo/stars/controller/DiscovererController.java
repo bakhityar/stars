@@ -22,6 +22,7 @@ public class DiscovererController {
   @Autowired
   private DiscoverersService discoverersService;
 
+  //список всех открывателей
   @RequestMapping("/discoverers")
   @SuppressWarnings("unchecked")
   public String listDiscoverers(Model model) {
@@ -30,6 +31,7 @@ public class DiscovererController {
     return "discoverers";
   }
 
+  //один выбранный открыватель
   @RequestMapping("/discoverers/{id}")
   public String discovererDetails(@PathVariable Long id, Model model) {
     Discoverers discoverer = discoverersService.findById(id);
@@ -37,6 +39,7 @@ public class DiscovererController {
     return "discoverer-details";
   }
 
+  //добавление нового открывателя
   @RequestMapping(value = "/discoverers", method = RequestMethod.POST)
   public String addDiscoverers(@Valid Discoverers discoverer, BindingResult result, RedirectAttributes redirectAttributes) {
     if (result.hasErrors()) {
@@ -49,6 +52,7 @@ public class DiscovererController {
     return "redirect:/discoverers";
   }
 
+  //форма добавления нового открывателя
   @RequestMapping("discoverers/add")
   public String formNewDiscoverer(Model model) {
     if (!model.containsAttribute("discoverer")) {
@@ -60,6 +64,7 @@ public class DiscovererController {
     return "form-discoverers";
   }
 
+  //редактировать открывателя
   @RequestMapping(value = "/discoverers/{id}", method = RequestMethod.POST)
   public String updateDiscoverer(@Valid Discoverers discoverer, BindingResult result, RedirectAttributes redirectAttributes) {
     if (result.hasErrors()) {
@@ -72,6 +77,7 @@ public class DiscovererController {
     return "redirect:/discoverers";
   }
 
+  //форма для редактирования. Передается id открывателя
   @RequestMapping("/discoverers/{id}/edit")
   public String formEditDiscoverer(@PathVariable Long id, Model model) {
     if (!model.containsAttribute("discoverer")) {
@@ -83,6 +89,7 @@ public class DiscovererController {
     return "form-discoverers";
   }
 
+  //Удаление открывателя
   @RequestMapping(value = "/discoverers/{id}/delete", method = RequestMethod.POST)
   public String deleteDisciverer(@PathVariable Long id, RedirectAttributes redirectAttributes) {
     Discoverers discoverer = discoverersService.findById(id);

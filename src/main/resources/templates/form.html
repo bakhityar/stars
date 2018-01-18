@@ -10,32 +10,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
     <link rel="stylesheet" th:href="@{/app.css}" />
+
     <title th:text="'Звезды | ' + ${heading}">Звезды | Редактирование</title>
-
-    <script th:inline="javascript">
-    /*<![CDATA[*/
-
-    function addItem() {
-        var disc = [[${discoverers}]];
-        var str = document.getElementById("recipient-name").value;
-        [[${discoverers}]][0] = str;
-        disc.push(str);
-        alert("discoverers " + [[${discoverers}]]);
-        alert("disc " + disc);
-        $('#modal').modal('hide');
-
-     }
-
-    /*]]>*/
-    </script>
-
 </head>
 <body>
     <div class="navbar-fixed">
         <nav>
             <div class="container">
                 <a th:href="@{/}" class="brand-logo">Stars<span>.</span>GO</a>
-                <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
+                <a th:href="@{/discoverers}" class="brand-logo right rem1">Открыватели</a>
             </div>
         </nav>
     </div>
@@ -52,14 +35,17 @@
         </div>
     </div>
     <div class="starss container">
+        <!--Параметр action передается в Модели. Обект Star передается форме-->
         <form th:action="@{${action}}" method="post" th:object="${star}">
             <input type="hidden" th:field="*{id}"/>
             <div class="row">
                 <div class="col s12">
+                    <!--Параметр heading передается в Модели.-->
                     <h2 th:text="${heading}">New Category</h2>
                 </div>
             </div>
             <div class="divider"></div>
+            <!--К каждому полю th:field="*{name}" прикрепляется поле из БД-->
             <div class="row">
                 <label for="name" class="col-sm-2 col-form-label">Наименование</label>
                 <div class="col s12 l8" th:classappend="${#fields.hasErrors('name')}? 'error' : ''">
@@ -92,51 +78,29 @@
                 </div>
             </div>
             <div class="row">
-                <label for="discoverer" class="col-sm-2 col-form-label">Открыватель</label>
-                <div class="col s8 l8">
-                    <select th:field="*{discoverer}" id="discoverer" class="cs-select cs-skin-border">
+                <label for="discoverer" class="col-sm-2 col-form-label">Выберите Открывателя</label>
+                <div class="col s12 l8">
+                    <select th:field="*{discoverer.id}" id="discoverer" class="cs-select cs-skin-border">
                         <option value="" disabled="disabled">Первооткрыватель</option>
                         <option th:each="discoverer : ${discoverers}" th:value="${discoverer.id}" th:text="${discoverer.name}">Аристотель</option>
-                        <option value="0">Добавить нового открывателя</option>
                     </select>
                 </div>
-                <!--<div class="col s4 l8">-->
+            </div>
+            <div class="row" th:classappend="${#strings.contains(heading,'Редактирование')} ? hidediv : ''">
+                <label for="discoverername" class="col-sm-2 col-form-label">Или впишите сюда другого</label>
+                <div class="col s12 l8" th:classappend="${#fields.hasErrors('yCoord')}? 'error' : ''">
+                    <input type="text" id="discoverername" placeholder="Имя открывателя" name="discoverername"/>
+                </div>
+            </div>
+                <!--div Появляется если добавляется новая зведа-->
+                <!--<div class="col s4" th:classappend="${#strings.contains(heading,'Редактирование')} ? hidediv : ''">-->
                     <!--<input type="text" id="discoverername" placeholder="Имя открывателя" name="discoverername"/>-->
                 <!--</div>-->
-            </div>
             <div class="row">
                 <label for="discoverer" class="col-sm-2 col-form-label"></label>
                 <div class="col s12 l8">
                     <button th:text="${submit}" type="submit" class="button">Add</button>
                     <a th:href="@{/}" class="button">Отменить</a>
-                </div>
-            </div>
-            <div class="row">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
-
-                <div id="modal" class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-sm">
-                        <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="recipient-name" class="form-control-label">Открыватель:</label>
-                                            <input type="text" class="form-control" id="recipient-name"/>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onclick="addItem()">Send message</button>
-                                </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </form>

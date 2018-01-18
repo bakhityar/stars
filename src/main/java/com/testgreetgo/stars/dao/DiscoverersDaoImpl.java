@@ -28,6 +28,7 @@ public class DiscoverersDaoImpl implements DiscoverersDao {
   @Override
   public Discoverers findById(Long id) {
     Session session = sessionFactory.openSession();
+    //Собираем все объекты типа Discoverers и делаем из него список
     Discoverers discoverers = session.get(Discoverers.class, id);
     session.close();
     return discoverers;
@@ -37,6 +38,7 @@ public class DiscoverersDaoImpl implements DiscoverersDao {
   public void save(Discoverers discoverer) {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
+    //Если объект существует Update, если нет то Save(т.е. create )
     session.saveOrUpdate(discoverer);
     session.getTransaction().commit();
     session.close();

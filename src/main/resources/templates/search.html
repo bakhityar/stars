@@ -18,7 +18,7 @@
         <nav>
             <div class="container">
                 <a th:href="@{/}" class="brand-logo">Stars<span>.</span>GO</a>
-                <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
+                <a th:href="@{/discoverers}" class="brand-logo right rem1">Открыватели</a>
             </div>
         </nav>
     </div>
@@ -46,12 +46,13 @@
             </tr>
             </thead>
             <tbody>
+            <!--Перебираем звезды. Объект Star передает в моделе из контроллера-->
             <tr th:each="star : ${stars}">
                 <td> <a class="linkin purplep" tabindex="0" role="button" th:text="${star.name}" th:href="@{'/star/' + ${star.id}}">Mark</a></td>
                 <td> <a class="purplep" th:text="${star.xCoord}" th:href="@{'/star/' + ${star.id}}">Otto</a></td>
                 <td> <a class="purplep" th:text="${star.yCoord}" th:href="@{'/star/' + ${star.id}}">@mdo</a></td>
-                <td> <a class="purplep" th:text="${star.color}" th:href="@{'/star/' + ${star.id}}">@mdo</a></td>
-                <td> <a class="purplep" th:text="${star.discoverer}" th:href="@{'/star/' + ${star.id}}">@mdo</a></td>
+                <td> <a class="purplep" th:text="color" th:style="|background:${star.color}; color:${star.color}; padding: 0 3px; border: 0.5px black solid;|" th:href="@{'/star/' + ${star.id}}"></a></td>
+                <td class="purplep" th:text="${star.discoverer.name}" th:href="@{'/star/' + ${star.id}}">@mdo</td>
             </tr>
             </tbody>
         </table>

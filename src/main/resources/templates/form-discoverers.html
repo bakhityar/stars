@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
     <link rel="stylesheet" th:href="@{/app.css}" />
+
     <title th:text="'Звезды | ' + ${heading}">Звезды | Редактирование</title>
 </head>
 <body>
@@ -17,7 +18,7 @@
         <nav>
             <div class="container">
                 <a th:href="@{/}" class="brand-logo">Stars<span>.</span>GO</a>
-                <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
+                <a th:href="@{/}" class="brand-logo right rem1">Звезды</a>
             </div>
         </nav>
     </div>

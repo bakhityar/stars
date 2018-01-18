@@ -21,6 +21,7 @@ public class StarDaoImpl implements StarDao {
   @SuppressWarnings("unchecked")
   public List<Star> searchByName(String q) {
     Session session = sessionFactory.openSession();
+    //делаем запрос из таблицы Stars по параметру q
     Query query = session.createQuery("from Star S where S.name like :q");
     query.setParameter("q", "%"+q+"%");
     List<Star> stars = query.list();
@@ -31,6 +32,7 @@ public class StarDaoImpl implements StarDao {
   @SuppressWarnings("unchecked")
   public List<Star> findAll() {
     Session session = sessionFactory.openSession();
+    //Собираем все объекты типа Star и делаем из него список
     List<Star> stars = session.createCriteria(Star.class).list();
     session.close();
     return stars;
@@ -48,6 +50,7 @@ public class StarDaoImpl implements StarDao {
   public void save(Star star) {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
+    //Если объект существует Update, если нет то Save(т.е. create )
     session.saveOrUpdate(star);
     session.getTransaction().commit();
     session.close();

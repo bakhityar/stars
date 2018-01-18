@@ -14,8 +14,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
 
+    //отключаем token csrf
     http.csrf().disable();
 
+    //все неавторизованные входящие запросы направляем на /login
     http
         .authorizeRequests()
         .anyRequest().authenticated()
@@ -30,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(WebSecurity web) throws Exception {
+    //отправляем в вебИгнор файлы разметки
     web.ignoring().antMatchers( "/vendor/**", "/app.css", "/favicon.png");
   }
 
@@ -39,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void init(AuthenticationManagerBuilder auth) throws Exception {
+      //захардкоденный логин/пароль
       auth
           .inMemoryAuthentication()
           .withUser("user").password("password").roles("ROLE");

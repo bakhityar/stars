@@ -11,6 +11,8 @@ import java.util.List;
 @Service
 public class StarServiceImpl implements StarService {
 
+  //Все в сервисе реализуется через DAO и его Autowired
+
   @Autowired
   private StarDao starDao;
 

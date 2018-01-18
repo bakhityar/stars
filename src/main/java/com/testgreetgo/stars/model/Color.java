@@ -1,7 +1,7 @@
 package com.testgreetgo.stars.model;
 
 public enum Color {
-
+  //Цвета звезд. CONST
   BLUE("Голубой","#0099ff"),
   WHITEBLUE("Бело-голубой","#ccebff"),
   WHITE("Белый","white"),

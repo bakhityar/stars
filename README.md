@@ -1,6 +1,6 @@
 # stars
 
- 1. Чтобы скачать проект с гитхаба запускаем команду:      https://github.com/bakhityar/stars.git
+ 1. Чтобы скачать проект с гитхаба запускаем команду:      git clone https://github.com/bakhityar/stars.git
   
  2. Заходим в папку Stars с помощью команды: 	cd Stars
   
